@@ -31,6 +31,13 @@ def createScene( node ):
     # simulation time-step
     node.dt = 1e-2
 
+
+    # gravity
+    node.gravity = [0, -9.81, 0]
+
+    # if for some reason this fails, you can use character strings instead
+    # node.gravity = '0 -9.81 0'
+    
     # start animation automatically
     node.animate = 1
     
