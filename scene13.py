@@ -1,15 +1,29 @@
 import toolbox
 import Sofa
+import math
+
 
 class Script(Sofa.PythonScriptController):
+
+    # def __init__(self):
+    #     Sofa.PythonScriptController.__init__(self)
+    #     self.integral = 0
 
     def onBeginAnimationStep(self, dt):
         global shared
 
         print 'position', shared.dofs.position
         print 'velocity', shared.dofs.velocity
+        print 'integral', self.integral
 
-        shared.ff.forces = 1e2
+        
+        error = shared.ref - shared.dofs.position[0][0]
+        derror = 0 - shared.dofs.velocity[0][0]
+
+        self.integral += dt * error
+
+        tau = shared.kp * error + shared.kd * derror + shared.ki * self.integral
+        shared.ff.forces = tau
         
         return 0
 
@@ -18,6 +32,10 @@ class Script(Sofa.PythonScriptController):
         return 0
 
     def reset(self):
+
+        self.integral = 0
+        shared.ff.forces = 0
+        
         return 0
 
 
@@ -25,9 +43,9 @@ class Shared: pass
 shared = Shared()
     
 def createScene( node ):
-    """pid control"""
+    """control"""
     
-    toolbox.setup( node )
+    toolbox.setup( node, animate = 0 )
 
     obj1 = toolbox.rigid(node,
                          name = 'object1',
@@ -81,6 +99,11 @@ def createScene( node ):
     global shared
     shared.dofs = dofs
     shared.ff = ff
+
+    shared.kp = 100
+    shared.kd = 10
+    shared.ki = 0.5
+    shared.ref = math.pi / 3.0
     
     # WARNING: it is important that you share data *AFTER* the python
     # script controller is created

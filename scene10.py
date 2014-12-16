@@ -49,8 +49,10 @@ def createScene( node ):
                                  output = '@dofs',
                                  pairs = '0 0')
 
+    stiffness = 1e3
+    
     ff = joint.createObject('UniformCompliance',
-                            compliance = 1e-3)
+                            compliance = 1.0 / stiffness)
 
 
     

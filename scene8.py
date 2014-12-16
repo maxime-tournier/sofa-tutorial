@@ -42,13 +42,16 @@ def createScene( node ):
                                name = 'dofs',
                                template = 'Rigid')
 
+    # enable drawing of mapped dofs
     dofs.showObject = True
-    dofs.showObjectScale = 1
+    dofs.showObjectScale = 1    # you can adjust scale with this one (big/small)
     
     mapping = frame1.createObject('LocalFrameMapping',
                                   template = 'Rigid, Rigid')
 
     mapping.source = '0'
+
+    # translation/rotation: (x y z), (x, y, z, w)
     mapping.coords = '3 0 0 0 0 0 1'
 
     obj2 = toolbox.rigid(node,
@@ -63,6 +66,7 @@ def createScene( node ):
                                name = 'dofs',
                                template = 'Rigid')
 
+    # drawing
     dofs.showObject = True
     dofs.showObjectScale = 1
     
