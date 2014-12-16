@@ -52,7 +52,6 @@ def createScene( node ):
     
     ff = constraints.createObject('UniformCompliance',
                                   compliance = 0)
-
     
     return 0
 

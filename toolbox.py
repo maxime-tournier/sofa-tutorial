@@ -106,7 +106,26 @@ def joint_dofs(node, parent_path, child_path, **kwargs):
 
     return res
 
-def setup( node ):
+def joint(node, parent_path, child_path, **kwargs):
+    fixed = kwargs.get('fixed', None)
+    compliance = kwargs.get('compliance', 0)
+    
+    res = joint_dofs(node, parent_path, child_path, **kwargs)
+    if fixed:
+        constraints = res.createChild('constraints')
+        dofs = constraints.createObject('MechanicalObject',
+                                        name = 'dofs',
+                                        template = 'Vec1')
+
+        mapping = constraints.createObject('MaskMapping',
+                                           dofs = cat(fixed))
+        
+        ff = constraints.createObject('UniformCompliance',
+                                      compliance = compliance)
+
+    return res
+
+def setup( node, **kwargs ):
 
     # load plugin
     plugin = node.createObject('RequiredPlugin',
@@ -123,5 +142,8 @@ def setup( node ):
     ode = node.createObject('CompliantImplicitSolver')
     num = node.createObject('SequentialSolver')
 
-    node.dt = 1e-2
-    node.animate = 1
+    dt = kwargs.get('dt', 1e-2)
+    node.dt = dt
+
+    animate = kwargs.get('animate', True)
+    node.animate = animate
