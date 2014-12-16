@@ -12,7 +12,7 @@ def rigid(node, **kwargs):
     mass = kwargs.get('mass', 1.0)
 
     mesh = kwargs.get('mesh', None)
-    template = kwargs.get('template', 'Rigid3d')
+    template = kwargs.get('template', 'Rigid')
 
     parent = node.createChild(name)
     
@@ -80,13 +80,31 @@ def local_frame(node, **kwargs):
                               template = template)
     
     mapping = frame.createObject('LocalFrameMapping',
-                                  template = '{}, {}'.format(template, template) )
+                                  template = '{},{}'.format(template, template) )
     
     mapping.source = str(source)
     mapping.coords = cat(coords)
     
     return frame
 
+
+def joint_dofs(node, parent_path, child_path, **kwargs):
+    """path are relative to node"""
+    
+    name = kwargs.get('name', 'unnamed')
+
+    res = node.createChild(name)
+    dofs = res.createObject('MechanicalObject',
+                            name = 'dofs',
+                            template = 'Vec6')
+    mapping = res.createObject('RigidJointMultiMapping',
+                               name = 'mapping',
+                               template = 'Rigid,Vec6',
+                               input = '@../{} @../{}'.format(parent_path, child_path),
+                               output = '@dofs',
+                               pairs = '0 0')
+
+    return res
 
 def setup( node ):
 
