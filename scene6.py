@@ -3,12 +3,11 @@ import toolbox
 def createScene( node ):
     """some refactoring"""
     
-    obj = node.createChild('object')
-
-    toolbox.rigid(obj,
-                  velocity = [0, 5, 0,
-                              0, 1, 0],
-                  mesh = 'mesh/torus.obj')
+    obj = toolbox.rigid(node,
+                        name = 'object',
+                        velocity = [0, 5, 0,
+                                    0, 1, 0],
+                        mesh = 'mesh/torus.obj')
 
     # key = value arguments are passed as a dictionary to the toolbox.rigid function
     
