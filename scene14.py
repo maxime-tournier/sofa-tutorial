@@ -8,6 +8,8 @@ def createScene( node ):
     toolbox.setup( node, animate = 0 )
 
 
+    # enabling contacts:
+    
     node.createObject('DefaultPipeline', name = 'pipeline')
     
     node.createObject('BruteForceDetection', name = 'detection')
@@ -22,7 +24,7 @@ def createScene( node ):
     manager = node.createObject('DefaultContactManager',
                                 name = 'manager',
                                 response = "FrictionCompliantContact",
-                                responseParams = "mu=0.5" )
+                                responseParams = "mu=0.4&horizontalConeProjection=1" )
 
 
 

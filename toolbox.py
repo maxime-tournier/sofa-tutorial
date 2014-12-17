@@ -69,22 +69,23 @@ def local_frame(node, **kwargs):
 
     source = kwargs.get('source', 0)
     coords = kwargs['coords']
-    
+
     name = kwargs.get('name', 'unnamed')
     template = kwargs.get('template', 'Rigid')
-    
+
     frame = node.createChild(name)
-    
+
     dofs = frame.createObject('MechanicalObject',
                               name = 'dofs',
                               template = template)
-    
+
     mapping = frame.createObject('LocalFrameMapping',
-                                  template = '{},{}'.format(template, template) )
-    
+                                 name = 'mapping',
+                                 template = '{},{}'.format(template, template) )
+
     mapping.source = str(source)
     mapping.coords = cat(coords)
-    
+
     return frame
 
 
@@ -124,6 +125,7 @@ def joint(node, parent_path, child_path, **kwargs):
                                       compliance = compliance)
 
     return res
+
 
 def setup( node, **kwargs ):
 

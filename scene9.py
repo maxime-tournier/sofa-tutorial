@@ -14,13 +14,15 @@ def createScene( node ):
     obj1.createObject('FixedConstraint',
                       indices = '0')
 
+    # we wrap the local frame creation in this helper function, see
+    # toolbox.py for details
     frame1 = toolbox.local_frame(obj1,
                                  coords = [3, 0, 0,
                                            0, 0, 0, 1])
+    # access an object under a node given its name
     dofs = frame1.getObject('dofs')
     dofs.showObject = True
     dofs.showObjectScale = 1
-    
 
     obj2 = toolbox.rigid(node,
                          name = 'object2',
