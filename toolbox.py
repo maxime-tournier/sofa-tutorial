@@ -136,11 +136,20 @@ def setup( node, **kwargs ):
 
 
     style = node.createObject('VisualStyle')
-    style.displayFlags = 'showBehavior showCollision showMapping hideVisual'
+    style.displayFlags = 'showBehavior showCollisionModels hideMapping hideVisual'
 
     # these are from the Compliant plugin
-    ode = node.createObject('CompliantImplicitSolver')
-    num = node.createObject('SequentialSolver')
+    # ode = node.createObject('CompliantImplicitSolver')
+    # num = node.createObject('SequentialSolver',
+    #                         iterations = 50,
+    #                         precision = 0)
+
+    # these are from the pouf plugin
+    ode = node.createObject('pouf_solver')
+    num = node.createObject('pouf.pgs',
+                            iterations = 50,
+                            precision = 0)
+
 
     dt = kwargs.get('dt', 1e-2)
     node.dt = dt

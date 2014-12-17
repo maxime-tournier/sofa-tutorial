@@ -5,10 +5,6 @@ import math
 
 class Script(Sofa.PythonScriptController):
 
-    # def __init__(self):
-    #     Sofa.PythonScriptController.__init__(self)
-    #     self.integral = 0
-
     def onBeginAnimationStep(self, dt):
         global shared
 
