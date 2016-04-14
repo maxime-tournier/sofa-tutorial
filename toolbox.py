@@ -79,12 +79,13 @@ def local_frame(node, **kwargs):
                               name = 'dofs',
                               template = template)
 
-    mapping = frame.createObject('LocalFrameMapping',
+    mapping = frame.createObject('AssembledRigidRigidMapping',
                                  name = 'mapping',
-                                 template = '{},{}'.format(template, template) )
+                                 template = '{0},{1}'.format(template, template) )
 
-    mapping.source = str(source)
-    mapping.coords = cat(coords)
+    
+    mapping.source = str(source) + ' ' + cat(coords)
+
 
     return frame
 
@@ -133,24 +134,21 @@ def setup( node, **kwargs ):
     plugin = node.createObject('RequiredPlugin',
                                pluginName = 'Compliant')
 
-    plugin = node.createObject('RequiredPlugin',
-                               pluginName = 'pouf')
-
 
     style = node.createObject('VisualStyle')
     style.displayFlags = 'showBehavior showCollisionModels hideMapping hideVisual'
 
     # these are from the Compliant plugin
-    # ode = node.createObject('CompliantImplicitSolver')
-    # num = node.createObject('SequentialSolver',
-    #                         iterations = 50,
-    #                         precision = 0)
-
-    # these are from the pouf plugin
-    ode = node.createObject('pouf_solver')
-    num = node.createObject('pouf.pgs',
+    ode = node.createObject('CompliantImplicitSolver')
+    num = node.createObject('SequentialSolver',
                             iterations = 50,
                             precision = 0)
+
+    # these are from the pouf plugin
+    # ode = node.createObject('pouf_solver')
+    # num = node.createObject('pouf.pgs',
+    #                         iterations = 50,
+    #                         precision = 0)
 
 
     dt = kwargs.get('dt', 1e-2)
