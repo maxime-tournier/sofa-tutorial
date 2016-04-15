@@ -2,7 +2,7 @@ import toolbox
 
 
 def createScene( node ):
-    """joint dofs in exponential coordinates"""
+    """rigid joint dofs in exponential coordinates"""
     
     toolbox.setup( node )
 
@@ -11,8 +11,8 @@ def createScene( node ):
                          name = 'object1',
                          mesh = 'mesh/torus.obj')
 
-    obj1.createObject('FixedConstraint',
-                      indices = '0')
+    # fix the first object
+    obj1.createObject('FixedConstraint', indices = '0')
 
     frame1 = toolbox.local_frame(obj1,
                                  name = 'frame',
@@ -42,6 +42,7 @@ def createScene( node ):
                               name = 'dofs',
                               template = 'Vec6')
 
+    # maps rigid dofs (a, b) -> log(inv(a) * b)
     mapping = joint.createObject('RigidJointMultiMapping',
                                  name = 'mapping',
                                  template = 'Rigid,Vec6',
@@ -49,11 +50,18 @@ def createScene( node ):
                                  output = '@dofs',
                                  pairs = '0 0')
 
-    stiffness = 1e3
+    # note: multimappings map from several input mechanical objects,
+    # whereas mappings map from a single mechanical object
     
+    stiffness = 1e3
+
+    # a compliance is the inverse of a stiffness. think of it as a
+    # spring that will drive the underlying dof to its zero value
+    # (here the exponential coordinates of the rigid joint). a zero
+    # compliance corresponds to an infinitely stiff spring, i.e. a
+    # holonomic constraint.
     ff = joint.createObject('UniformCompliance',
                             compliance = 1.0 / stiffness)
-
 
     
     return 0

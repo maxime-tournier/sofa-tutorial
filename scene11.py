@@ -37,6 +37,7 @@ def createScene( node ):
     dofs.showObject = True
     dofs.showObjectScale = 1
 
+    # we did a little refactoring for rigid joints
     joint = toolbox.joint_dofs(node,
                                'object1/frame/dofs',
                                'object2/frame/dofs',
@@ -47,9 +48,11 @@ def createScene( node ):
                                     name = 'dofs',
                                     template = 'Vec1')
 
+    # this mapping only selects the translation part of input dof
     mapping = constraints.createObject('MaskMapping',
                                        dofs = '1 1 1 0 0 0')
-    
+
+    # which we constraint to be zero using a compliance object
     ff = constraints.createObject('UniformCompliance',
                                   compliance = 0)
     

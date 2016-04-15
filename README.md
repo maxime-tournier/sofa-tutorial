@@ -39,4 +39,9 @@ Each scene file is self-documented.
 - [scene6.py](scene6.py): refactoring
 - [scene7.py](scene7.py): enabling plugins
 - [scene8.py](scene8.py): a rigid -> rigid mapping
-
+- [scene9.py](scene9.py): refactoring rigid mappings
+- [scene10.py](scene10.py): rigid joint, exponential coordinates, compliance
+- [scene11.py](scene11.py): refactoring joints, translation constraints
+- [scene12.py](scene12.py): python script controllers, dynamic scene modification
+- [scene13.py](scene13.py): a simple PID controller
+- [scene14.py](scene14.py): frictional contacts, contact groups

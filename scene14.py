@@ -3,7 +3,7 @@ import math
 
 
 def createScene( node ):
-    """contacts"""
+    """contacts: friction, groups"""
     
     toolbox.setup( node, animate = 0 )
 

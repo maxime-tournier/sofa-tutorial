@@ -8,17 +8,20 @@ class Script(Sofa.PythonScriptController):
     def onBeginAnimationStep(self, dt):
         global shared
 
+        # (explicit) pid controller
         print 'position', shared.dofs.position
         print 'velocity', shared.dofs.velocity
         print 'integral', self.integral
-
         
         error = shared.ref - shared.dofs.position[0][0]
         derror = 0 - shared.dofs.velocity[0][0]
 
         self.integral += dt * error
 
+        # compute pid force
         tau = shared.kp * error + shared.kd * derror + shared.ki * self.integral
+
+        # apply force
         shared.ff.forces = tau
         
         return 0
@@ -39,7 +42,7 @@ class Shared: pass
 shared = Shared()
     
 def createScene( node ):
-    """control"""
+    """a simple PID controller"""
     
     toolbox.setup( node, animate = 0 )
 
