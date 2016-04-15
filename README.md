@@ -29,7 +29,7 @@ Then go to `Edit/Plugin Manager` and add the `libSofaPython` library.
 
 # Scenes
 
-Each scene file is self-documented.
+Each scene file is pretty-much self-documented, here is the index:
 
 - [scene1.py](scene1.py): an empty scene
 - [scene2.py](scene2.py): node/object creation, mechanical objects, mass
