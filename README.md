@@ -34,16 +34,16 @@ library. You should be all set.
 Each scene file is pretty-much self-documented, here is the index:
 
 - [`scene1.py`](scene1.py): an empty scene
-- [scene2.py](scene2.py): node/object creation, mechanical objects, mass
-- [scene3.py](scene3.py): ode and numerical solvers, time step, gravity, visual flags for display
-- [scene4.py](scene4.py): mapping a visual model from rigid degrees of freedom
-- [scene5.py](scene5.py): mapping collision models
-- [scene6.py](scene6.py): refactoring
-- [scene7.py](scene7.py): enabling plugins
-- [scene8.py](scene8.py): a rigid -> rigid mapping
-- [scene9.py](scene9.py): refactoring rigid mappings
-- [scene10.py](scene10.py): rigid joint, exponential coordinates, compliance
-- [scene11.py](scene11.py): refactoring joints, translation constraints
-- [scene12.py](scene12.py): python script controllers, dynamic scene modification
-- [scene13.py](scene13.py): a simple PID controller
-- [scene14.py](scene14.py): frictional contacts, contact groups
+- [`scene2.py`](scene2.py): node/object creation, mechanical objects, mass
+- [`scene3.py`](scene3.py): ode and numerical solvers, time step, gravity, visual flags for display
+- [`scene4.py`](scene4.py): mapping a visual model from rigid degrees of freedom
+- [`scene5.py`](scene5.py): mapping collision models
+- [`scene6.py`](scene6.py): refactoring
+- [`scene7.py`](scene7.py): enabling plugins
+- [`scene8.py`](scene8.py): a rigid -> rigid mapping
+- [`scene9.py`](scene9.py): refactoring rigid mappings
+- [`scene10.py`](scene10.py): rigid joint, exponential coordinates, compliance
+- [`scene11.py`](scene11.py): refactoring joints, translation constraints
+- [`scene12.py`](scene12.py): python script controllers, dynamic scene modification
+- [`scene13.py`](scene13.py): a simple PID controller
+- [`scene14.py`](scene14.py): frictional contacts, contact groups
