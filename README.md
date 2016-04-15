@@ -17,6 +17,8 @@ cd sofa
 mkdir build
 cd build
 cmake ..
+make
+# time for a coffee :)
 ```
 
 You also need to enable the `SofaPython` plugin in the plugin manager:
