@@ -14,7 +14,7 @@ def createScene( node ):
 
     # initial conditions:
     
-    # position/orientation (as a quaternion x y z w)
+    # position/orientation (as a quaternion: x y z w)
     dofs.position = [0, 0, 0,
                      0, 0, 0, 1]
 

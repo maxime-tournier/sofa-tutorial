@@ -2,6 +2,7 @@ import toolbox
 
 
 def setup( node ):
+    '''misc setup on root node'''
     
     # load plugin
     plugin = node.createObject('RequiredPlugin',
@@ -19,7 +20,7 @@ def setup( node ):
 
 
 def createScene( node ):
-    """local frames example"""
+    """rigid-rigid mapping example"""
     
     setup( node )
 
@@ -27,7 +28,7 @@ def createScene( node ):
     obj1 = toolbox.rigid(node,
                          name = 'object1',
                          mesh = 'mesh/torus.obj',
-                         position = '0 0 0 0 0 0 1')
+                         position = '0 0 0  0 0 0 1')
 
     obj1.createObject('FixedConstraint',
                       indices = '0')
@@ -38,7 +39,7 @@ def createScene( node ):
     dofs = frame1.createObject('MechanicalObject',
                                name = 'dofs',
                                template = 'Rigid3d',
-                               position = '0 0 0 0 0 0 1')
+                               position = '0 0 0  0 0 0 1')
 
     # enable drawing of mapped dofs
     dofs.showObject = True
@@ -48,13 +49,11 @@ def createScene( node ):
                                   template = 'Rigid,Rigid',
                                   input = '@../dofs',
                                   output = '@dofs')
-    mapping.source = '0 3 0 0 0 0 0 1'
 
-    # # mapping.source = '0'
-
-    # # translation/rotation: (x y z), (x, y, z, w)
-    # # mapping.coords = '3 0 0 0 0 0 1'
-
+    # input dof, translation, rotation: (i), (x y z), (x, y, z, w)
+    mapping.source = '0  3 0 0   0 0 0 1'
+    
+    
     obj2 = toolbox.rigid(node,
                          name = 'object2',
                          position = [6, 0, 0,
@@ -70,14 +69,22 @@ def createScene( node ):
     # drawing
     dofs.showObject = True
     dofs.showObjectScale = 1
-    
+
+    # the mapping name is not very informative, but we'll end up
+    # wrapping it
     mapping = frame2.createObject('AssembledRigidRigidMapping',
                                   template = 'Rigid,Rigid',
                                   input = '@../dofs',
                                   ouput = '@dofs')
 
-    mapping.source = '0 -3 0 0 0 0 0 1'
+    # here we map two output rigid dofs from the input dofs. output
+    # dofs are resized automatically. (beware: some mappings are not that friendly !)
 
+    mapping.source = '''
+    0  -3 0 0  0 0 0 1
+    0  0 2 0  0 0 0 1 
+    '''
+    
 
     return 0
 

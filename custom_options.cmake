@@ -1,0 +1,5 @@
+
+
+
+setSofaOption(PLUGIN_SOFAPYTHON ON)
+setSofaOption(PLUGIN_COMPLIANT ON)

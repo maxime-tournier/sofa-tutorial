@@ -44,7 +44,7 @@ def createScene( node ):
     mapping = collision.createObject('RigidMapping')
     
 
-    # now we extract the topology form the mesh (ie. neighbouring
+    # now we extract the topology form the mesh (ie. neighbour
     # information, connectivity, etc...). this acts as a proxy
     # for different data sources (here an obj mesh)
     topology = collision.createObject('MeshTopology', 
