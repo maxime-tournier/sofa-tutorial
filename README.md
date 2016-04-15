@@ -18,14 +18,15 @@ cd build
 cmake ..
 ```
 
-Then you need to enable the `SofaPython` plugin in the plugin manager.
+You also need to enable the `SofaPython` plugin in the plugin manager:
 
 ```sh
 cd sofa/build/bin
 ./runSofa
 ```
 
-Then go to `Edit/Plugin Manager` and add the `libSofaPython` library.
+then go to `Edit/Plugin Manager` and add the `libSofaPython`
+library. You're all set.
 
 # Scenes
 
