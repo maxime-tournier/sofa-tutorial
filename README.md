@@ -6,8 +6,9 @@ body simulation.
 
 You need an up-to-date build of the SOFA framework, compiled with the
 `SofaPython` and `Compliant` plugins. To enable these, copy the
-`custom_options.cmake` file to the SOFA root folder (or add its
-content to the existing one, if any), then re-run `cmake`:
+[`custom_options.cmake`](custom_options.cmake) file to the SOFA root
+folder (or add its content to the existing one, if any), then re-run
+`cmake`:
 
 ```sh
 git clone https://scm.gforge.inria.fr/anonscm/git/sofa/sofa.git
@@ -32,7 +33,7 @@ library. You should be all set.
 
 Each scene file is pretty-much self-documented, here is the index:
 
-- [scene1.py](scene1.py): an empty scene
+- [`scene1.py`](scene1.py): an empty scene
 - [scene2.py](scene2.py): node/object creation, mechanical objects, mass
 - [scene3.py](scene3.py): ode and numerical solvers, time step, gravity, visual flags for display
 - [scene4.py](scene4.py): mapping a visual model from rigid degrees of freedom
