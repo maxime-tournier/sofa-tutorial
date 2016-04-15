@@ -51,6 +51,7 @@ def createScene( node ):
                                   output = '@dofs')
 
     # input dof, translation, rotation: (i), (x y z), (x, y, z, w)
+    # the spaces are for readability only
     mapping.source = '0  3 0 0   0 0 0 1'
     
     
