@@ -1,12 +1,12 @@
-This repository contains a series of
-[SOFA](https://www.sofa-framework.org) python scenes introducing rigid
-bodies simulation.
+This repository contains a tutorial series of
+[SOFA](https://www.sofa-framework.org/) python scenes for basic rigid
+body simulation.
 
 # Requirements
 
 You need an up-to-date build of the SOFA framework, compiled with the
 `SofaPython` and `Compliant` plugins. To enable these, copy the
-`custom_options.cmake` file to the sofa root folder (or add its
+`custom_options.cmake` file to the SOFA root folder (or add its
 content to the existing one, if any), then re-run `cmake`:
 
 ```sh
@@ -25,8 +25,8 @@ cd sofa/build/bin
 ./runSofa
 ```
 
-then go to `Edit/Plugin Manager` and add the `libSofaPython`
-library. You're all set.
+then go to `Edit/Plugin Manager` and add the `libSofaPython.*`
+library. You should be all set.
 
 # Scenes
 
